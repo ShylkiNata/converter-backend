@@ -28,5 +28,6 @@ Route::group([
 });
 
 Route::namespace('Api')->group(function () {
-    Route::post('compress', 'FileController@compress');
+    Route::post('compressors/{type}', 'FileController@compress');
+    Route::post('converters/{type}', 'FileController@convert');
 });
