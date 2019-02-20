@@ -26,3 +26,7 @@ Route::group([
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
 });
+
+Route::namespace('Api')->group(function () {
+    Route::post('compress', 'FileController@compress');
+});
