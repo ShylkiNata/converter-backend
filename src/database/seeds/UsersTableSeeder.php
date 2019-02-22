@@ -2,15 +2,15 @@
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
     public function run()
     {
         $users = [[
-            'name' => 'user',
-            'email' => 'user@example.com',
-            'password' => bcrypt('secret')
+            'email' => 'admin@vertor.com',
+            'password' => Hash::make('password')
         ]];
 
         foreach ($users as $user) {
