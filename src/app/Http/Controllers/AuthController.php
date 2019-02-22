@@ -44,10 +44,12 @@ class AuthController extends Controller
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
         ]);
-
         $token = JWTAuth::fromUser($user);
 
-        return response()->json(compact('user','token'),201);
+        return response()->json([
+            'data' => $user,
+            'token' => $token
+        ], 201);
     }
 
     public function logout()
