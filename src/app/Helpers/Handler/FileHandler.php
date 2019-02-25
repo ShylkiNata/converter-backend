@@ -3,6 +3,7 @@
 namespace App\Helpers\Handler;
 
 use App\Helpers\Handler\Tools\Directory;
+use phpDocumentor\Reflection\Types\Void_;
 use Symfony\Component\Process\Process;
 
 abstract class FileHandler
@@ -21,7 +22,7 @@ abstract class FileHandler
     abstract function command($to, $from);
 
     protected function archive() {
-        if($this->directory->exists('public')) {
+        if(!$this->directory->exists('public')) {
             throw new \Exception("Destination folder not exists", 400);
         }
 
@@ -54,7 +55,7 @@ abstract class FileHandler
         $process->run();
 
         if (!$process->isSuccessful()) {
-            throw new \Exception("An error occurred during the file processing", 500);
+            return back()->withError("An error occurred during the file processing");
         }
     }
 }
