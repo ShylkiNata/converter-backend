@@ -7,9 +7,8 @@ use App\Helpers\Handler\FileHandler;
 
 class Compressor extends FileHandler
 {
-    public function __construct($files, $types)
+    public function __construct($files, $type)
     {
-        $type = explode('-to-', $types);
         parent::__construct($files, $type);
     }
 

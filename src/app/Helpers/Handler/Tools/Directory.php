@@ -22,7 +22,7 @@ class Directory
         $this->paths = [
             "public" => $path,
             "zip" => "$path/$this->uid.zip",
-            "download" => "storage/images/$this->uid/$this->uid.zip"
+            "download" => request()->fullUrl()."/storage/images/$this->uid/$this->uid.zip"
         ];
 
         File::makeDirectory($path);
