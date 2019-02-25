@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Helpers\Handler;
+namespace App\Helpers\Handler\Tools;
 
+
+use App\Helpers\Handler\FileHandler;
 
 class Compressor extends FileHandler
 {

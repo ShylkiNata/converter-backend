@@ -2,7 +2,7 @@
 
 namespace App\Helpers\Handler;
 
-use Mockery\Exception;
+use App\Helpers\Handler\Tools\Directory;
 use Symfony\Component\Process\Process;
 
 abstract class FileHandler

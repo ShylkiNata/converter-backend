@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Helpers\Handler\Compressor;
-use App\Helpers\Handler\Converter;
-use App\Helpers\Handler\FileHandler;
+use App\Helpers\Handler\Tools\Compressor;
+use App\Helpers\Handler\Tools\Converter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
