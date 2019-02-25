@@ -2,8 +2,8 @@
 
 namespace App\Helpers\Handler;
 
+use Mockery\Exception;
 use Symfony\Component\Process\Process;
-
 
 abstract class FileHandler
 {
@@ -25,21 +25,17 @@ abstract class FileHandler
             throw new \Exception("Destination folder not exists", 400);
         }
 
-        try {
-            $public = $this->directory->paths["public"];
-            $zip = $this->directory->paths["zip"];
+        $public = $this->directory->paths["public"];
+        $zip = $this->directory->paths["zip"];
 
-            $this->runProcess("cd $public; zip -c $zip *");
+        $this->runProcess("cd $public; zip -c $zip *");
 
-            return $this->directory->paths["download"];
-        }
-        catch (\Exception $e) {
-            throw new \Exception($e->getMessage(), 500);
-        }
+        return $this->directory->paths["download"];
     }
 
     public function handle()
     {
+
         foreach ($this->files as $name => $file) {
             $from = $file->getRealPath();
             $to = $this->directory->file("$name.$this->type");
@@ -48,10 +44,12 @@ abstract class FileHandler
         }
 
         $path = $this->archive();
+
         return $path;
     }
 
     protected function runProcess($command) {
+
         $process = new Process($command);
         $process->run();
 

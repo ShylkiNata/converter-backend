@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\Handler\Compressor;
 use App\Helpers\Handler\Converter;
+use App\Helpers\Handler\FileHandler;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -11,19 +12,29 @@ class FileController extends Controller
 {
     public function compress(Request $request, $type)
     {
-        $compressor = new Compressor($request->files, $type);
-
-        return response()->json([
-            'data' => $compressor->handle(),
-            'errors' => false
-        ], 200);
+        return $this->runHandler($request->files, $type, 'Compressor');
     }
 
-    public function converter(Request $request, $types) {
-        $converter = new Converter($request->files, $types);
+    public function convert(Request $request, $types)
+    {
+        return $this->runHandler($request->files, $types, 'Converter');
+    }
+
+    private function runHandler($files, $types, $FileHandler)
+    {
+        try
+        {
+            $fileHandler = new $FileHandler($files, $types);
+        }
+        catch (\Exception $e)
+        {
+            return response()->json([
+                'error' => $e->getMessage()
+            ], 500);
+        }
 
         return response()->json([
-            'data' => $converter->handle(),
+            'data' => $fileHandler->handle(),
             'errors' => false
         ], 200);
     }

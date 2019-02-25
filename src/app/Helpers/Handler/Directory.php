@@ -37,6 +37,7 @@ class Directory
     }
 
     public function file($name) {
-        return "$this->paths/$name";
+        $public = $this->paths["public"];
+        return "$public/$name";
     }
 }
