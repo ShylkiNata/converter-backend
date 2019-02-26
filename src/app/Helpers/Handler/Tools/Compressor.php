@@ -13,10 +13,14 @@ class Compressor extends FileHandler
     }
 
     public function command($to, $from) {
-        if($this->type === 'pdf') {
-            return "gs -sDEVICE=pdfwrite -sOutputFile=$to $from";
-        }
 
-        return "convert $from -quality 50 $to";
+        switch($this->type) {
+            case 'pdf':
+                return "gs -sDEVICE=pdfwrite -sOutputFile=$to $from";
+            case 'png':
+                return "pngquant --quality=50-70 --output=$to $from";
+            default:
+                return "convert $from -quality 60 $to";
+        }
     }
 }
