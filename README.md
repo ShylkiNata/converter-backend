@@ -12,3 +12,4 @@ php artisan jwt:secret
 php artisan vendor:publish --provider="Barryvdh\Cors\ServiceProvider"
 7. Create symlink:
 php artisan storage:link
+8. Create "image" directory in storage/app/public
