@@ -1,0 +1,5 @@
+Header set Access-Control-Allow-Origin "*"
+
+RewriteEngine on 
+RewriteCond %{REQUEST_URI} !^public 
+RewriteRule ^(.*)$ src/public/$1 [L]
