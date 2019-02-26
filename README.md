@@ -8,3 +8,8 @@ php artisan key:generate
 php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
 5. set the jwt-auth secret:
 php artisan jwt:secret
+6. publish CORS configs:
+php artisan vendor:publish --provider="Barryvdh\Cors\ServiceProvider"
+7. Create symlink:
+php artisan storage:link
+8. Create "image" directory in storage/app/public
