@@ -3,22 +3,24 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\FileRequest;
 
 class FileController extends Controller
 {
-    public function compress(Request $request, $type)
+    public function compress(FileRequest $request, $type)
     {
-        return $this->runHandler($request->files, $type, 'Compressor');
+        return $this->runHandler($request, $type, 'Compressor');
     }
 
-    public function convert(Request $request, $types)
+    public function convert(FileRequest $request, $types)
     {
-        return $this->runHandler($request->files, $types, 'Converter');
+        return $this->runHandler($request, $types, 'Converter');
     }
 
-    private function runHandler($files, $types, $FileHandler)
+    private function runHandler(FileRequest $request, $types, $FileHandler)
     {
+        $files = $request->validated();
+
         try
         {
             $instance = "App\Helpers\Handler\Tools\\$FileHandler";
