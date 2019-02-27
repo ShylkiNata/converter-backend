@@ -8,10 +8,8 @@
     RewriteCond %{HTTP:Authorization} ^(.*) 
     RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
 
-    # Redirect Trailing Slashes...
     RewriteRule ^(.*)/$ /$1 [L,R=301]
-
-    # Handle Front Controller...
+r
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
